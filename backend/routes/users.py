@@ -26,11 +26,11 @@ def create_user(user: UserCreate, db: Session= Depends(get_db)):
     return new_user
 
 @router.get("/",response_model=List[UserResponse])
-def get_user(db: Session=Depends(get_db)):
+def get_users(db: Session=Depends(get_db)):
     return db.query(User).all()
 
 @router.get("/{user_id}",response_model=UserResponse)
-def get_user(user_id:int,db: Session=Depends(get_db)):
+def get_user_by_id(user_id:int,db: Session=Depends(get_db)):
     user=db.query(User).filter(User.id==user_id).first()
     if not user:
         raise HTTPException(

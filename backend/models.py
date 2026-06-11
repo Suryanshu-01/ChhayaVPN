@@ -16,3 +16,17 @@ class User(Base):
         DateTime,
         default=lambda: datetime.now(timezone.utc)
     )
+
+
+class Account(Base):
+    __tablename__="accounts"
+    id = Column(Integer, primary_key=True, index=True)
+    username= Column(String, unique= True, nullable= False)
+    email= Column(String, unique= True, nullable= False)
+    password_hash= Column(String, nullable=False)
+    status= Column(String, default="active")
+
+    created_at= Column(
+        DateTime,
+        default=lambda:datetime.now(timezone.utc)
+    )
